@@ -111,24 +111,24 @@ jobs:
         name: Padavan-packages
         path: /opt/images
 
-   # - name: Upload firmware to WeTransfer
-   #   run: |
-   #     curl -fsSL git.io/file-transfer | sh
-   #     ./transfer wet -s -p 16 --no-progress /opt/images 2>&1 | tee wetransfer.log
-   #     echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+    - name: Upload firmware to WeTransfer
+      run: |
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer wet -s -p 16 --no-progress /opt/images 2>&1 | tee wetransfer.log
+        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
           
-   # - name: Generate release tag
-   #   id: tag
-   #   run: |
-   #     echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-   #     touch release.txt
-   #     [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
-   #     [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-   #     echo "::set-output name=status::success"
+    - name: Generate release tag
+      id: tag
+      run: |
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        touch release.txt
+        [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
+        [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
+        echo "::set-output name=status::success"
         
-   # - name: Upload firmware to release
-   #   uses: softprops/action-gh-release@v1
-   #   if: steps.tag.outputs.status == 'success' && !cancelled()
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v1
+      if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
