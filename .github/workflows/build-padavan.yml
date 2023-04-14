@@ -13,7 +13,6 @@ on:
 #    - cron: 0 8 * * 5
   watch:
     types: [started]
-
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -113,10 +112,7 @@ jobs:
     
     - name: Upload firmware to WeTransfer
       run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer wet -s -p 16 --no-progress /opt/images 2>&1 | tee wetransfer.log
-        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-    
+        echo "NO"
     - name: Generate release tag
       id: tag
       run: |
