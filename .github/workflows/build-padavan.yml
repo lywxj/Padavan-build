@@ -113,6 +113,7 @@ jobs:
     - name: Upload firmware to WeTransfer
       run: |
         echo "NO"
+    
     - name: Generate release tag
       id: tag
       run: |
