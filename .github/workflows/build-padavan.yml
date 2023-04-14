@@ -112,7 +112,7 @@ jobs:
     
     - name: Upload firmware to WeTransfer
       run: |
-        echo "NO"
+        echo "NOUPDATE"
     
     - name: Generate release tag
       id: tag
@@ -124,11 +124,4 @@ jobs:
         echo "::set-output name=status::success"
         
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: Padavan
-        body_path: release.txt
-        files: /opt/images/*
+     
