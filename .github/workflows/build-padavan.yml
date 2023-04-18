@@ -37,7 +37,7 @@ jobs:
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: B70
+        TNAME: PSG1218
       run: |
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
@@ -107,7 +107,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-packages-B70
+        name: Padavan-packages-PSG1218
         path: /opt/images
     
     - name: Upload firmware to WeTransfer
