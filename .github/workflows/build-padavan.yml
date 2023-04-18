@@ -107,7 +107,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-packages
+        name: Padavan-packages-B70
         path: /opt/images
     
     - name: Upload firmware to WeTransfer
